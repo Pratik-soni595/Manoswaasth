@@ -19,30 +19,18 @@ const normalizeQuickTipsText = (text) => {
 
 const normalizeInDepthText = (text) => {
   if (!text) {
-    return `Summary\nI wasn't able to generate a response.\n\nDetailed Guidance\nPlease try again in a moment.\n\nAction Plan\nTake a deep breath and pause.\n\nWhen to Seek Professional Help\nIf the error persists, please consider reaching out to technical support.\n\nNext Question\nHow else can I support you?`;
+    return "I wasn't able to process that right now. Please take a moment and try again.";
   }
 
-  const paragraphs = text.split('\n').map(p => p.trim()).filter(p => p.length > 0);
-  
-  const headers = [
-    "Summary",
-    "Detailed Guidance",
-    "Action Plan",
-    "When to Seek Professional Help",
-    "Next Question"
-  ];
-
-  let result = [];
-  for (let i = 0; i < 5; i++) {
-    const pText = i < paragraphs.length ? paragraphs[i] : "Let's pause here and reflect on this.";
-    result.push(`${headers[i]}\n${pText}`);
-  }
-
-  if (paragraphs.length > 5) {
-    result[4] += '\n' + paragraphs.slice(5).join('\n');
-  }
-
-  return result.join('\n\n');
+  // Strip explicit headers if the model accidentally includes them, 
+  // catching variations with or without bolding, colons, and newlines.
+  return text
+    .replace(/^(?:\*\*)?Summary(?:\*\*)?[:\s]*\n?/i, '')
+    .replace(/\n+(?:\*\*)?Detailed Guidance(?:\*\*)?[:\s]*\n?/ig, '\n\n')
+    .replace(/\n+(?:\*\*)?Action Plan(?:\*\*)?[:\s]*\n?/ig, '\n\n')
+    .replace(/\n+(?:\*\*)?When to Seek Professional Help(?:\*\*)?[:\s]*\n?/ig, '\n\n')
+    .replace(/\n+(?:\*\*)?Next Question(?:\*\*)?[:\s]*\n?/ig, '\n\n')
+    .trim();
 };
 
 exports.handleChatMessage = async (req, res, next) => {

@@ -4,12 +4,47 @@ import { Sparkles, Send, ArrowLeft, Leaf, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AnimatedPage from '../components/AnimatedPage';
 import { sendChatMessage } from '../api/ai.api';
+import { dashboardApi } from '../api/dashboard.api';
 import './Chat.css';
 
 const quickTopics = ['Stress Relief', 'Better Sleep', 'Digestion', 'Morning Routine', 'Breathing', 'Diet Tips'];
 
 const initialMessages = [
   { id: 1, sender: 'ai', text: "Namaste! 🙏 I'm your Ayurvedic wellness companion. I can help you with stress management, sleep, digestion, breathing exercises, and Dosha-specific guidance. What's on your mind today?" },
+];
+
+const doshaElements = {
+  Vata: 'Space & Air',
+  Pitta: 'Fire & Water',
+  Kapha: 'Earth & Water',
+  'Vata-Pitta': 'Air, Fire & Water',
+  'Pitta-Kapha': 'Fire, Water & Earth',
+  'Vata-Kapha': 'Air, Earth & Water',
+  'Vata-Pitta-Kapha': 'Tridoshic (All Elements)'
+};
+
+const doshaRecommendations = {
+  Vata: [
+    { icon: <Leaf size={16} />, text: 'Warm sesame oil massage (Abhyanga) to ground energy' },
+    { icon: <MessageCircle size={16} />, text: 'Start with warm ginger or ginger-fennel tea' },
+    { icon: <Sparkles size={16} />, text: 'Practice 5 mins of alternate nostril breathing' }
+  ],
+  Pitta: [
+    { icon: <Leaf size={16} />, text: 'Sheetali Breath — cooling pranayama for Pitta' },
+    { icon: <MessageCircle size={16} />, text: 'Coconut water — natural Pitta coolant' },
+    { icon: <Sparkles size={16} />, text: 'Apply cooling oils like coconut before shower' }
+  ],
+  Kapha: [
+    { icon: <Leaf size={16} />, text: 'Dry brushing (Garshana) to stimulate lymph flow' },
+    { icon: <MessageCircle size={16} />, text: 'Vigorous exercise to wake up the body' },
+    { icon: <Sparkles size={16} />, text: 'Warm water with lemon and pinch of black pepper' }
+  ]
+};
+
+const getDefaultRecommendations = () => [
+  { icon: <Leaf size={16} />, text: 'Wake up with the sunrise for natural energy' },
+  { icon: <MessageCircle size={16} />, text: 'Drink a glass of warm water' },
+  { icon: <Sparkles size={16} />, text: 'Take 5 deep mindful breaths' }
 ];
 
 const aiResponses = {
@@ -38,6 +73,7 @@ export default function Chat() {
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [responseMode, setResponseMode] = useState('quick_tips');
+  const [profile, setProfile] = useState({ primaryDosha: 'Unknown' });
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -45,6 +81,20 @@ export default function Chat() {
   };
 
   useEffect(() => { scrollToBottom(); }, [messages, isTyping]);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const data = await dashboardApi.getOverview();
+        if (data && data.profile) {
+          setProfile(data.profile);
+        }
+      } catch (err) {
+        console.error('Failed to fetch profile in chat', err);
+      }
+    };
+    fetchProfile();
+  }, []);
 
   const sendMessage = async (text) => {
     if (!text.trim()) return;
@@ -204,23 +254,21 @@ export default function Chat() {
               <div className="chat-sidebar__profile">
                 <div className="chat-sidebar__dosha-indicator" />
                 <div>
-                  <span className="chat-sidebar__dosha-name">Pitta</span>
-                  <span className="chat-sidebar__dosha-elem">Fire & Water</span>
+                  <span className="chat-sidebar__dosha-name">{profile.primaryDosha === 'Unknown' ? 'Discovering...' : profile.primaryDosha}</span>
+                  <span className="chat-sidebar__dosha-elem">{doshaElements[profile.primaryDosha] || 'Balance Seeking'}</span>
                 </div>
               </div>
             </div>
 
             <div className="chat-sidebar__section">
-              <h3 className="chat-sidebar__title">Recommended</h3>
+              <h3 className="chat-sidebar__title">Morning Recommendations</h3>
               <div className="chat-sidebar__recs">
-                <div className="rec-card">
-                  <MessageCircle size={16} />
-                  <span>Sheetali Breath — cooling pranayama for Pitta</span>
-                </div>
-                <div className="rec-card">
-                  <Leaf size={16} />
-                  <span>Coconut water — natural Pitta coolant</span>
-                </div>
+                {(doshaRecommendations[profile.primaryDosha] || getDefaultRecommendations()).map((rec, i) => (
+                  <div key={i} className="rec-card">
+                    {rec.icon}
+                    <span>{rec.text}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
