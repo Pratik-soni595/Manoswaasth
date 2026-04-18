@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Send, ArrowLeft, Leaf, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AnimatedPage from '../components/AnimatedPage';
+import { sendChatMessage } from '../api/ai.api';
 import './Chat.css';
 
 const quickTopics = ['Stress Relief', 'Better Sleep', 'Digestion', 'Morning Routine', 'Breathing', 'Diet Tips'];
@@ -44,18 +45,30 @@ export default function Chat() {
 
   useEffect(() => { scrollToBottom(); }, [messages, isTyping]);
 
-  const sendMessage = (text) => {
+  const sendMessage = async (text) => {
     if (!text.trim()) return;
     const userMsg = { id: Date.now(), sender: 'user', text: text.trim() };
     setMessages((prev) => [...prev, userMsg]);
     setInput('');
     setIsTyping(true);
 
-    setTimeout(() => {
+    try {
+      const response = await sendChatMessage(text);
+      if (response && response.reply) {
+        const aiMsg = { id: Date.now() + 1, sender: 'ai', text: response.reply };
+        setMessages((prev) => [...prev, aiMsg]);
+      } else {
+        throw new Error('Invalid response format');
+      }
+    } catch (error) {
+      console.error('AI Chat Error. Using local fallback.', error);
+      // Fallback simulates processing time before fulfilling
+      await new Promise(resolve => setTimeout(resolve, 1200 + Math.random() * 800));
       const aiMsg = { id: Date.now() + 1, sender: 'ai', text: getAiResponse(text) };
       setMessages((prev) => [...prev, aiMsg]);
+    } finally {
       setIsTyping(false);
-    }, 1200 + Math.random() * 800);
+    }
   };
 
   const handleSubmit = (e) => {
