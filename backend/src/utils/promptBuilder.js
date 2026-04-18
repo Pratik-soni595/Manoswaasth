@@ -1,14 +1,28 @@
-exports.buildPrompt = ({ user, message, chatHistory, quizAttempt, flatQuestions, moodLog }) => {
+exports.buildPrompt = ({ user, message, chatHistory, quizAttempt, flatQuestions, moodLog, responseMode = 'quick_tips' }) => {
   let prompt = `You are an Ayurvedic wellness companion. Give practical wellness/lifestyle guidance.
 Never provide diagnosis, emergency direction, or harmful advice.
-Keep your response concise (5-6 lines max).
 Tone: calm, grounded, helpful, easy, and casual.
 
-STRICT INSTRUCTION: Your abstract structure MUST contain the following three parameters and you MUST explicitly include these exact string labels to format your response:
-Insight:
-Recommendation:
-One small action today:
 `;
+
+  if (responseMode === 'in_depth') {
+    prompt += `STRICT INSTRUCTION FOR IN-DEPTH MODE:
+Your output must contain:
+A short Summary of user's problem
+Detailed Guidance for user
+Action Plan (You may provide this in points or steps, this has to be the longest part of the response)
+When to Seek Professional Help (keep this part concise)
+Next Question (if relevant)
+
+However, you MUST NOT explicitly include literal markers (e.g., "Summary:", "action plan:"). Be thorough, detailed, and personalized.
+`;
+  } else {
+    prompt += `STRICT INSTRUCTION FOR QUICK-TIPS MODE:
+Keep your response concise (5-6 lines max).
+Your abstract structure MUST contain three core parameters: an insight, a recommendation, and a small action today.
+However, you MUST NOT explicitly include literal markers (e.g., "Insight:", "Recommendation:"). Just provide the paragraphs seamlessly.
+`;
+  }
 
   prompt += `\n--- USER CONTEXT ---\n`;
   prompt += `Name: ${user.name || 'Friend'}\n`;
@@ -20,9 +34,7 @@ One small action today:
 
   if (quizAttempt && flatQuestions) {
     prompt += `\nLatest Quiz Result:\n`;
-    prompt += `Dominant Dosha: ${quizAttempt.dominantType}\n`;
-    prompt += `Physical: ${quizAttempt.result.physical}, Metabolism: ${quizAttempt.result.metabolism}, Mental: ${quizAttempt.result.mental}\n`;
-    
+    prompt += `Physical Dosha: ${quizAttempt.result.physical}, Metabolism Dosha: ${quizAttempt.result.metabolism}, Mental Dosha: ${quizAttempt.result.mental}\n`;
     prompt += `\nQuiz Answers:\n`;
     quizAttempt.answers.forEach(ans => {
       const q = flatQuestions.find(fq => fq.id === ans.questionId);

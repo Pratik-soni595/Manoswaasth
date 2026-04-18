@@ -4,21 +4,42 @@ const MoodLog = require('../models/MoodLog');
 const { getFlatQuestions } = require('../data/quizData');
 const { generateAiResponse } = require('../services/ai.service');
 
-const normalizeAiText = (text) => {
+const normalizeQuickTipsText = (text) => {
   if (!text) {
-    return "Insight: I wasn't able to generate a response.\nRecommendation: Please take a moment and try again.\nOne small action today: Drink some warm water.";
+    return "I wasn't able to process that right now. Please take a moment and try again.";
   }
   
-  if (!text.includes('Insight:') && (!text.includes('Recommendation:') || !text.includes('One small action today:'))) {
-    // If format is missed, forcefully adapt it
-    return `Insight: ${text.replace(/\n/g, ' ')}\nRecommendation: Keep practicing mindful awareness throughout your day.\nOne small action today: Take 5 deep breaths before your next activity.`;
+  // Safely strip the explicit markers if the model accidentally includes them
+  return text
+    .replace(/^Insight:\s*/i, '')
+    .replace(/\nRecommendation:\s*/i, '\n\n')
+    .replace(/\nOne small action today:\s*/i, '\n\n')
+    .trim();
+};
+
+const normalizeInDepthText = (text) => {
+  if (!text) {
+    return "I wasn't able to process that right now. Please take a moment and try again.";
   }
-  return text;
+
+  // Strip explicit headers if the model accidentally includes them, 
+  // catching variations with or without bolding, colons, and newlines.
+  return text
+    .replace(/^(?:\*\*)?Summary(?:\*\*)?[:\s]*\n?/i, '')
+    .replace(/\n+(?:\*\*)?Detailed Guidance(?:\*\*)?[:\s]*\n?/ig, '\n\n')
+    .replace(/\n+(?:\*\*)?Action Plan(?:\*\*)?[:\s]*\n?/ig, '\n\n')
+    .replace(/\n+(?:\*\*)?When to Seek Professional Help(?:\*\*)?[:\s]*\n?/ig, '\n\n')
+    .replace(/\n+(?:\*\*)?Next Question(?:\*\*)?[:\s]*\n?/ig, '\n\n')
+    .trim();
 };
 
 exports.handleChatMessage = async (req, res, next) => {
   try {
-    const { message } = req.body;
+    let { message, responseMode } = req.body;
+    
+    if (responseMode !== 'quick_tips' && responseMode !== 'in_depth') {
+      responseMode = 'quick_tips';
+    }
     
     if (!message || typeof message !== 'string' || message.trim().length === 0) {
       return res.status(400).json({ message: 'Message content is required.' });
@@ -71,11 +92,17 @@ exports.handleChatMessage = async (req, res, next) => {
       chatHistory,
       quizAttempt,
       flatQuestions,
-      moodLog
+      moodLog,
+      responseMode
     };
 
     let aiText = await generateAiResponse(context);
-    aiText = normalizeAiText(aiText);
+    
+    if (responseMode === 'in_depth') {
+      aiText = normalizeInDepthText(aiText);
+    } else {
+      aiText = normalizeQuickTipsText(aiText);
+    }
 
     // Save the assistant's reply
     const aiMsg = await ChatMessage.create({

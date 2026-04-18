@@ -2,18 +2,22 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 const { buildPrompt } = require('../utils/promptBuilder');
 
 let genAI;
-let model;
 
-const initializeGemini = () => {
+const getModelForMode = (responseMode) => {
   if (!genAI && process.env.GEMINI_API_KEY) {
     genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    model = genAI.getGenerativeModel({ 
-      model: process.env.GEMINI_MODEL || 'gemini-1.5-flash',
-      generationConfig: {
-        maxOutputTokens: parseInt(process.env.GEMINI_MAX_OUTPUT_TOKENS || '256', 10),
-      }
-    });
   }
+
+  if (!genAI) return null;
+
+  const maxTokens = responseMode === 'in_depth' ? 1200 : parseInt(process.env.GEMINI_MAX_OUTPUT_TOKENS || '256', 10);
+
+  return genAI.getGenerativeModel({ 
+    model: process.env.GEMINI_MODEL || 'gemini-1.5-flash',
+    generationConfig: {
+      maxOutputTokens: maxTokens,
+    }
+  });
 };
 
 const getFallbackResponse = () => {
@@ -21,7 +25,7 @@ const getFallbackResponse = () => {
 };
 
 exports.generateAiResponse = async (context) => {
-  initializeGemini();
+  const model = getModelForMode(context.responseMode);
 
   if (!model) {
     console.error('Gemini API is not configured (missing key). Using fallback response.');
