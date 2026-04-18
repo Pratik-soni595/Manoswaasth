@@ -37,6 +37,7 @@ export default function Chat() {
   const [messages, setMessages] = useState(initialMessages);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [responseMode, setResponseMode] = useState('quick_tips');
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -53,7 +54,7 @@ export default function Chat() {
     setIsTyping(true);
 
     try {
-      const response = await sendChatMessage(text);
+      const response = await sendChatMessage(text, responseMode);
       if (response && response.reply) {
         const aiMsg = { id: Date.now() + 1, sender: 'ai', text: response.reply };
         setMessages((prev) => [...prev, aiMsg]);
@@ -83,15 +84,37 @@ export default function Chat() {
           {/* Main Chat Panel */}
           <div className="chat-panel">
             <div className="chat-panel__header">
-              <Link to="/" className="chat-panel__back"><ArrowLeft size={18} /></Link>
-              <div className="chat-panel__header-icon">
-                <Sparkles size={18} />
+              <div className="chat-panel__header-left">
+                <Link to="/" className="chat-panel__back"><ArrowLeft size={18} /></Link>
+                <div className="chat-panel__header-icon">
+                  <Sparkles size={18} />
+                </div>
+                <div className="chat-panel__header-info">
+                  <h2>Ayurveda Wellness Companion</h2>
+                  <span className="chat-panel__status">
+                    <span className="chat-panel__status-dot" /> Online
+                  </span>
+                </div>
               </div>
-              <div className="chat-panel__header-info">
-                <h2>Ayurveda Wellness Companion</h2>
-                <span className="chat-panel__status">
-                  <span className="chat-panel__status-dot" /> Online
-                </span>
+              <div className="chat-panel__header-right">
+                <div className="chat-mode-toggle" role="group" aria-label="Response Mode">
+                  <button
+                    type="button"
+                    className={`chat-mode-btn ${responseMode === 'quick_tips' ? 'chat-mode-btn--active' : ''}`}
+                    aria-pressed={responseMode === 'quick_tips'}
+                    onClick={() => setResponseMode('quick_tips')}
+                  >
+                    Quick-Tips
+                  </button>
+                  <button
+                    type="button"
+                    className={`chat-mode-btn ${responseMode === 'in_depth' ? 'chat-mode-btn--active' : ''}`}
+                    aria-pressed={responseMode === 'in_depth'}
+                    onClick={() => setResponseMode('in_depth')}
+                  >
+                    In-Depth Insights
+                  </button>
+                </div>
               </div>
             </div>
 

@@ -1,5 +1,5 @@
 import { client } from './client';
 
-export const sendChatMessage = async (message) => {
-  return await client.post('/ai/chat', { message });
+export const sendChatMessage = async (message, responseMode = 'quick_tips') => {
+  return await client.post('/ai/chat', { message, responseMode });
 };

@@ -9,7 +9,7 @@ const aiLimiter = rateLimit({
   max: 20,
   keyGenerator: (req) => {
     // requireAuth runs first, so req.user is guaranteed.
-    // Using a string fallback avoids the express-rate-limit IPv6 req.ip warning.
+
     return (req.user && req.user._id) ? req.user._id.toString() : 'unauthenticated';
   },
   message: { ok: false, message: 'Too many messages sent. Please pause and try again after 15 minutes.' }

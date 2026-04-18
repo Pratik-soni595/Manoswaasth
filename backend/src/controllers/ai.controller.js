@@ -4,21 +4,54 @@ const MoodLog = require('../models/MoodLog');
 const { getFlatQuestions } = require('../data/quizData');
 const { generateAiResponse } = require('../services/ai.service');
 
-const normalizeAiText = (text) => {
+const normalizeQuickTipsText = (text) => {
   if (!text) {
-    return "Insight: I wasn't able to generate a response.\nRecommendation: Please take a moment and try again.\nOne small action today: Drink some warm water.";
+    return "I wasn't able to process that right now. Please take a moment and try again.";
   }
   
-  if (!text.includes('Insight:') && (!text.includes('Recommendation:') || !text.includes('One small action today:'))) {
-    // If format is missed, forcefully adapt it
-    return `Insight: ${text.replace(/\n/g, ' ')}\nRecommendation: Keep practicing mindful awareness throughout your day.\nOne small action today: Take 5 deep breaths before your next activity.`;
+  // Safely strip the explicit markers if the model accidentally includes them
+  return text
+    .replace(/^Insight:\s*/i, '')
+    .replace(/\nRecommendation:\s*/i, '\n\n')
+    .replace(/\nOne small action today:\s*/i, '\n\n')
+    .trim();
+};
+
+const normalizeInDepthText = (text) => {
+  if (!text) {
+    return `Summary\nI wasn't able to generate a response.\n\nDetailed Guidance\nPlease try again in a moment.\n\nAction Plan\nTake a deep breath and pause.\n\nWhen to Seek Professional Help\nIf the error persists, please consider reaching out to technical support.\n\nNext Question\nHow else can I support you?`;
   }
-  return text;
+
+  const paragraphs = text.split('\n').map(p => p.trim()).filter(p => p.length > 0);
+  
+  const headers = [
+    "Summary",
+    "Detailed Guidance",
+    "Action Plan",
+    "When to Seek Professional Help",
+    "Next Question"
+  ];
+
+  let result = [];
+  for (let i = 0; i < 5; i++) {
+    const pText = i < paragraphs.length ? paragraphs[i] : "Let's pause here and reflect on this.";
+    result.push(`${headers[i]}\n${pText}`);
+  }
+
+  if (paragraphs.length > 5) {
+    result[4] += '\n' + paragraphs.slice(5).join('\n');
+  }
+
+  return result.join('\n\n');
 };
 
 exports.handleChatMessage = async (req, res, next) => {
   try {
-    const { message } = req.body;
+    let { message, responseMode } = req.body;
+    
+    if (responseMode !== 'quick_tips' && responseMode !== 'in_depth') {
+      responseMode = 'quick_tips';
+    }
     
     if (!message || typeof message !== 'string' || message.trim().length === 0) {
       return res.status(400).json({ message: 'Message content is required.' });
@@ -71,11 +104,17 @@ exports.handleChatMessage = async (req, res, next) => {
       chatHistory,
       quizAttempt,
       flatQuestions,
-      moodLog
+      moodLog,
+      responseMode
     };
 
     let aiText = await generateAiResponse(context);
-    aiText = normalizeAiText(aiText);
+    
+    if (responseMode === 'in_depth') {
+      aiText = normalizeInDepthText(aiText);
+    } else {
+      aiText = normalizeQuickTipsText(aiText);
+    }
 
     // Save the assistant's reply
     const aiMsg = await ChatMessage.create({
