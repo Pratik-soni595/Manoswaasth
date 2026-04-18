@@ -1,0 +1,391 @@
+/* ======================== */
+/*       DASHBOARD          */
+/* ======================== */
+
+.dashboard {
+  min-height: 100vh;
+  padding: 90px var(--space-xl) var(--space-3xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-xl);
+}
+
+.dashboard__greeting {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.dashboard__subtitle {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 2px;
+}
+
+.btn--sm {
+  padding: 8px 18px;
+  font-size: 0.82rem;
+}
+
+/* ======================== */
+/*          GRID            */
+/* ======================== */
+
+.dashboard__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+}
+
+/* ======================== */
+/*         WIDGET           */
+/* ======================== */
+
+.widget {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  transition: box-shadow var(--duration-standard) var(--ease-standard);
+}
+.widget:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.widget__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  color: var(--primary);
+}
+.widget__header h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.widget__badge {
+  margin-left: auto;
+  padding: 2px 10px;
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--secondary);
+  border-radius: var(--radius-pill);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.widget__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: var(--space-md);
+  color: var(--primary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: gap var(--duration-standard) var(--ease-standard);
+}
+.widget__link:hover { gap: 8px; }
+
+.widget__save-btn {
+  margin-top: var(--space-md);
+  width: 100%;
+}
+
+/* ======================== */
+/*     PROFILE WIDGET       */
+/* ======================== */
+
+.profile-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.profile-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--gradient-cta);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.profile-name {
+  display: block;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.profile-dosha-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  background: rgba(255, 107, 53, 0.1);
+  color: var(--pitta);
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.sattva-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+  background: var(--background);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.sattva-tree {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+.sattva-tree__icon { font-size: 1.5rem; }
+.sattva-tree__name { font-size: 0.82rem; color: var(--text-secondary); font-weight: 500; }
+
+.sattva-points {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* ======================== */
+/*     MOOD WIDGET          */
+/* ======================== */
+
+.mood-buttons {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.mood-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: var(--space-md);
+  background: var(--background);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--duration-micro) var(--ease-standard);
+}
+.mood-btn:hover { border-color: var(--primary); }
+.mood-btn--active {
+  border-color: var(--primary);
+  background: rgba(44, 95, 78, 0.06);
+  box-shadow: 0 0 0 1px var(--primary);
+}
+.mood-btn__emoji { font-size: 1.5rem; }
+.mood-btn__label { font-size: 0.72rem; color: var(--text-secondary); font-weight: 500; }
+
+.mood-chart {
+  background: var(--background);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-sm) 0;
+}
+
+/* ======================== */
+/*     ROUTINE WIDGET       */
+/* ======================== */
+
+.routine-section {
+  margin-bottom: var(--space-md);
+}
+
+.routine-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+  color: var(--text-primary);
+}
+
+.routine-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ritual-pill {
+  padding: 5px 12px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  color: var(--text-primary);
+  cursor: grab;
+  transition: all var(--duration-micro) var(--ease-standard);
+}
+.ritual-pill:hover {
+  border-color: var(--primary);
+  background: rgba(44, 95, 78, 0.04);
+}
+
+/* ======================== */
+/*    COMPANION WIDGET      */
+/* ======================== */
+
+.companion-preview {
+  padding: var(--space-md);
+  background: var(--background);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.companion-msg {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.companion-msg__avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--gradient-cta);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.companion-msg p {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* ======================== */
+/*    BREATHING WIDGET      */
+/* ======================== */
+
+.breathing-cards {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.breathing-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: var(--space-md);
+  background: var(--background);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--duration-standard) var(--ease-standard);
+}
+.breathing-card:hover,
+.breathing-card--active {
+  border-color: var(--primary);
+  background: rgba(44, 95, 78, 0.04);
+}
+.breathing-card--active { box-shadow: 0 0 0 1px var(--primary); }
+
+.breathing-card__icon { font-size: 1.4rem; color: var(--primary); }
+.breathing-card__name { font-size: 0.78rem; font-weight: 600; color: var(--text-primary); }
+.breathing-card__pattern { font-size: 0.7rem; color: var(--secondary); font-weight: 600; }
+.breathing-card__desc { font-size: 0.68rem; color: var(--text-tertiary); }
+
+.breathing-active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+  padding: var(--space-lg);
+}
+
+.breathing-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(44, 95, 78, 0.1);
+  border: 2px solid var(--primary);
+}
+
+.breathing-label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+/* ======================== */
+/*       JOURNAL WIDGET     */
+/* ======================== */
+
+.journal-latest {
+  margin-bottom: var(--space-md);
+}
+
+.journal-guna-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.journal-guna-badge--sattvic { background: rgba(56, 161, 105, 0.1); color: var(--success); }
+
+.journal-excerpt {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.journal-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.journal-input-wrap textarea {
+  padding: 8px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  resize: none;
+  background: var(--background);
+  transition: border-color var(--duration-micro) var(--ease-standard);
+}
+.journal-input-wrap textarea:focus { border-color: var(--primary); }
+
+/* ======================== */
+/*       RESPONSIVE         */
+/* ======================== */
+
+@media (max-width: 900px) {
+  .dashboard__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 80px var(--space-md) var(--space-xl);
+  }
+  .dashboard__greeting { font-size: 1.4rem; }
+  .breathing-cards { flex-direction: column; }
+}
