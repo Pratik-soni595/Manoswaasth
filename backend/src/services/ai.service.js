@@ -10,10 +10,10 @@ const getModelForMode = (responseMode) => {
 
   if (!genAI) return null;
 
-  const maxTokens = responseMode === 'in_depth' ? 1200 : parseInt(process.env.GEMINI_MAX_OUTPUT_TOKENS || '256', 10);
+  const maxTokens = responseMode === 'in_depth' ? 1500 : parseInt(process.env.GEMINI_MAX_OUTPUT_TOKENS || '300', 10);
 
   return genAI.getGenerativeModel({ 
-    model: process.env.GEMINI_MODEL || 'gemini-1.5-flash',
+    model: process.env.GEMINI_MODEL || 'gemini-3.1-flash-lite-preview-1.5-flash',
     generationConfig: {
       maxOutputTokens: maxTokens,
     }
@@ -21,7 +21,7 @@ const getModelForMode = (responseMode) => {
 };
 
 const getFallbackResponse = () => {
-  return `Insight: It seems the cosmic energies are a bit scattered right now, and I couldn't process that.\nRecommendation: Please take a deep breath and give it another try in a moment.\nOne small action today: Drink a glass of warm water and relax your shoulders.`;
+  return `It seems the cosmic energies are a bit scattered right now, and I couldn't process that.\nPlease take a deep breath and give it another try in a moment.\nOne small action today: Drink a glass of warm water and relax your shoulders.`;
 };
 
 exports.generateAiResponse = async (context) => {
