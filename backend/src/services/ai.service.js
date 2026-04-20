@@ -13,7 +13,7 @@ const getModelForMode = (responseMode) => {
   const maxTokens = responseMode === 'in_depth' ? 1500 : parseInt(process.env.GEMINI_MAX_OUTPUT_TOKENS || '300', 10);
 
   return genAI.getGenerativeModel({ 
-    model: process.env.GEMINI_MODEL || 'gemini-3.1-flash-lite-preview-1.5-flash',
+    model: process.env.GEMINI_MODEL || 'gemini-3.1-pro-preview',
     generationConfig: {
       maxOutputTokens: maxTokens,
     }
