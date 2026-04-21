@@ -33,13 +33,11 @@ export default function Dashboard() {
   const [moodHistory, setMoodHistory] = useState([]);
   const [selectedMood, setSelectedMood] = useState(null);
   const [routine, setRoutine] = useState({ morning: [], evening: [] });
-  const [journalEntry, setJournalEntry] = useState('');
   const [latestJournal, setLatestJournal] = useState(null);
   const [activeBreathing, setActiveBreathing] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const [isSavingMood, setIsSavingMood] = useState(false);
-  const [isSavingJournal, setIsSavingJournal] = useState(false);
 
   const fetchOverview = async () => {
     try {
@@ -83,20 +81,6 @@ export default function Dashboard() {
   };
 
   const hasRoutine = Boolean(routine?.morning?.length || routine?.evening?.length);
-  const handleSaveJournal = async () => {
-    if (!journalEntry.trim()) return;
-    setIsSavingJournal(true);
-    try {
-      const res = await dashboardApi.saveJournalEntry(journalEntry, 'Sattvic');
-      setSattvaPoints(res.totalPoints);
-      setJournalEntry('');
-      fetchOverview();
-    } catch (err) {
-      alert(err.message || 'Failed to save journal');
-    } finally {
-      setIsSavingJournal(false);
-    }
-  };
 
   const treeStage = sattvaPoints >= 100 ? '🍃🌳🍃' : sattvaPoints >= 50 ? '🌳' : sattvaPoints >= 20 ? '🌿' : '🌱';
   const treeName = sattvaPoints >= 100 ? 'Flourishing Banyan' : sattvaPoints >= 50 ? 'Young Tree' : sattvaPoints >= 20 ? 'Sprout' : 'Seedling';
@@ -339,33 +323,38 @@ export default function Dashboard() {
               <BookOpen size={18} />
               <h3>Reflection Journal</h3>
             </div>
+            
             <div className="journal-preview">
               {latestJournal ? (
-                <div className="journal-latest">
-                  <span className="journal-guna-badge journal-guna-badge--sattvic">{latestJournal.gunaTag || 'Sattvic'} ✦</span>
-                  <p className="journal-excerpt">"{latestJournal.content}"</p>
-                </div>
+                <>
+                  <div className="journal-latest" style={{ marginBottom: '16px' }}>
+                    <span className={`journal-guna-badge journal-guna-badge--${latestJournal.gunaTag?.toLowerCase() || 'sattvic'}`}>
+                      {latestJournal.gunaTag || 'Sattvic'} ✦
+                    </span>
+                    <p className="journal-excerpt" style={{ color: 'var(--text-primary)' }}>"{latestJournal.content}"</p>
+                  </div>
+                  <Link to="/reflection-journal" className="widget__link" style={{ marginTop: '0', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    Open Journal <ArrowRight size={14} />
+                  </Link>
+                </>
               ) : (
-                <div className="journal-latest">
-                  <p className="journal-excerpt text-gray-400">No journal entries yet. Reflect on your day.</p>
+                <div className="journal-empty-state">
+                  <h4 style={{ fontSize: '1.05rem', marginBottom: '8px', color: 'var(--text-primary)' }}>Begin Your Reflection Practice</h4>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.5', marginBottom: '20px' }}>
+                    Journaling helps you process emotions, track patterns, and build clarity over time. Even a few lines each day can improve self-awareness and mental balance.
+                  </p>
+                  <Link to="/reflection-journal" style={{ textDecoration: 'none' }}>
+                    <motion.button
+                      className="btn btn--primary btn--sm widget__save-btn"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      style={{ margin: 0 }}
+                    >
+                      Start Reflection Journal
+                    </motion.button>
+                  </Link>
                 </div>
               )}
-              <div className="journal-input-wrap">
-                <textarea
-                  placeholder="Write a reflection..."
-                  value={journalEntry}
-                  onChange={(e) => setJournalEntry(e.target.value)}
-                  rows={2}
-                />
-                <motion.button
-                  className="btn btn--primary btn--sm"
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleSaveJournal}
-                  disabled={!journalEntry.trim() || isSavingJournal}
-                >
-                  {isSavingJournal ? 'Saving...' : 'Save'}
-                </motion.button>
-              </div>
             </div>
           </motion.div>
         </motion.div>

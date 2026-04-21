@@ -1,0 +1,194 @@
+.reflection-journal {
+  min-height: 100vh;
+  padding: 90px var(--space-xl) var(--space-3xl);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.reflection-journal__header {
+  margin-bottom: var(--space-2xl);
+  text-align: center;
+}
+
+.reflection-journal__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.reflection-journal__subtitle {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.journal-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.journal-card__header {
+  margin-bottom: var(--space-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.journal-card__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.journal-input-area {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.journal-textarea {
+  width: 100%;
+  padding: 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  background: var(--background);
+  color: var(--text-primary);
+  resize: vertical;
+  min-height: 160px;
+  transition: border-color var(--duration-micro) var(--ease-standard);
+}
+
+.journal-textarea:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.guna-selector {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.guna-btn {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--background);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all var(--duration-micro) var(--ease-standard);
+  cursor: pointer;
+}
+
+.guna-btn:hover {
+  border-color: var(--primary-light);
+  color: var(--primary);
+}
+
+.guna-btn.active {
+  background: rgba(56, 161, 105, 0.1);
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.journal-guna-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.journal-guna-badge--sattvic { background: rgba(56, 161, 105, 0.1); color: var(--success); }
+.journal-guna-badge--rajasic { background: rgba(212, 175, 55, 0.1); color: var(--secondary); }
+.journal-guna-badge--tamasic { background: rgba(229, 62, 62, 0.1); color: var(--error); }
+
+.journal-latest-entry {
+  background: var(--background);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  margin-top: var(--space-md);
+}
+
+.journal-latest-entry p {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-style: italic;
+  margin-top: var(--space-sm);
+}
+
+.journal-date {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  display: block;
+  margin-top: var(--space-sm);
+}
+
+.btn-nav-back {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--text-secondary);
+  background: transparent;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 8px 0;
+  margin-bottom: var(--space-lg);
+  transition: color var(--duration-micro) var(--ease-standard);
+}
+
+.btn-nav-back:hover {
+  color: var(--text-primary);
+}
+
+.reflection-journal__actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--space-xl);
+}
+
+.btn-save {
+  padding: 12px 32px;
+  background: var(--gradient-cta);
+  color: white;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--duration-micro) var(--ease-standard);
+}
+
+.btn-save:hover:not(:disabled) {
+  box-shadow: var(--shadow-glow-sage);
+  transform: translateY(-1px);
+}
+
+.btn-save:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .reflection-journal {
+    padding: 80px var(--space-md) var(--space-xl);
+  }
+  
+  .journal-card {
+    padding: var(--space-md);
+  }
+
+  .guna-selector {
+    flex-wrap: wrap;
+  }
+}
