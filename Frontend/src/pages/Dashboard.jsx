@@ -39,7 +39,6 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [isSavingMood, setIsSavingMood] = useState(false);
-  const [isSavingRoutine, setIsSavingRoutine] = useState(false);
   const [isSavingJournal, setIsSavingJournal] = useState(false);
 
   const fetchOverview = async () => {
@@ -83,23 +82,7 @@ export default function Dashboard() {
     }
   };
 
-  const currentMorning = routine?.morning?.length ? routine.morning : ['Wake before 6 AM', 'Tongue Scraping', 'Oil Pulling', 'Warm Lemon Water', 'Yoga / Walking', 'Meditation'];
-  const currentEvening = routine?.evening?.length ? routine.evening : ['Light Dinner by 7 PM', 'Herbal Tea', 'Journaling', 'Sleep by 10 PM'];
-
-  const handleSaveRoutine = async () => {
-    setIsSavingRoutine(true);
-    try {
-      const payload = { morning: currentMorning, evening: currentEvening };
-      const res = await dashboardApi.saveRoutine(payload);
-      setSattvaPoints(res.totalPoints);
-      alert('Routine saved successfully! (+2 points)');
-    } catch (err) {
-      alert(err.message || 'Failed to save routine');
-    } finally {
-      setIsSavingRoutine(false);
-    }
-  };
-
+  const hasRoutine = Boolean(routine?.morning?.length || routine?.evening?.length);
   const handleSaveJournal = async () => {
     if (!journalEntry.trim()) return;
     setIsSavingJournal(true);
@@ -156,12 +139,12 @@ export default function Dashboard() {
                 <span className="profile-name">{profile.name}</span>
                 <span className="profile-dosha-badge">
                   {profile.primaryDosha && profile.primaryDosha !== 'Unknown' ? (
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <Link to="/results" style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}>
                       {profile.primaryDosha === 'Vata' && <Wind size={14} />}
                       {profile.primaryDosha === 'Pitta' && <Flame size={14} />}
                       {profile.primaryDosha === 'Kapha' && <Leaf size={14} />}
                       {profile.primaryDosha}
-                    </span>
+                    </Link>
                   ) : (
                     <Link to="/dosha-quiz" style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
                       Take Quiz <ArrowRight size={14} />
@@ -246,31 +229,53 @@ export default function Dashboard() {
               <Sun size={18} />
               <h3>Dinacharya — Daily Routine</h3>
             </div>
-            <div className="routine-section">
-              <h4 className="routine-label">☀️ Morning</h4>
-              <div className="routine-items">
-                {currentMorning.map((r) => (
-                  <div key={r} className="ritual-pill">{r}</div>
-                ))}
+            
+            {hasRoutine ? (
+              <>
+                {routine.morning?.length > 0 && (
+                  <div className="routine-section">
+                    <h4 className="routine-label">☀️ Morning · {routine.morning.length} items</h4>
+                    <div className="routine-items">
+                      {routine.morning.map((r) => (
+                        <div key={r} className="ritual-pill">{r}</div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                
+                {routine.evening?.length > 0 && (
+                  <div className="routine-section">
+                    <h4 className="routine-label" style={{ marginTop: '16px' }}>🌙 Evening · {routine.evening.length} items</h4>
+                    <div className="routine-items">
+                      {routine.evening.map((r) => (
+                        <div key={r} className="ritual-pill">{r}</div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                
+                <Link to="/routine-builder" className="widget__link" style={{ marginTop: '20px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  Edit Routine <ArrowRight size={14} />
+                </Link>
+              </>
+            ) : (
+              <div className="routine-empty-state">
+                <h4 style={{ fontSize: '1.05rem', marginBottom: '8px', color: 'var(--text-primary)' }}>Create Your Dinacharya</h4>
+                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.5', marginBottom: '20px' }}>
+                  A consistent morning and evening routine helps regulate energy, improve focus, and support deeper rest. Start with a few simple rituals and build gradually.
+                </p>
+                <Link to="/routine-builder" style={{ textDecoration: 'none' }}>
+                  <motion.button
+                    className="btn btn--primary btn--sm widget__save-btn"
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    style={{ margin: 0 }}
+                  >
+                    Build My Routine
+                  </motion.button>
+                </Link>
               </div>
-            </div>
-            <div className="routine-section">
-              <h4 className="routine-label">🌙 Evening</h4>
-              <div className="routine-items">
-                {currentEvening.map((r) => (
-                  <div key={r} className="ritual-pill">{r}</div>
-                ))}
-              </div>
-            </div>
-            <motion.button
-              className="btn btn--primary btn--sm widget__save-btn"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={handleSaveRoutine}
-              disabled={isSavingRoutine}
-            >
-              {isSavingRoutine ? 'Saving...' : 'Save Routine'}
-            </motion.button>
+            )}
           </motion.div>
 
           {/* Widget 4 — AI Companion Mini */}
