@@ -10,7 +10,7 @@ import './Chat.css';
 const quickTopics = ['Stress Relief', 'Better Sleep', 'Digestion', 'Morning Routine', 'Breathing', 'Diet Tips'];
 
 const initialMessages = [
-  { id: 1, sender: 'ai', text: "Namaste! 🙏 I'm your Ayurvedic wellness companion. I can help you with stress management, sleep, digestion, breathing exercises, and Dosha-specific guidance. What's on your mind today?" },
+  { id: 1, sender: 'ai', text: "Namaste! I'm your Ayurvedic wellness companion. I can help you with stress management, sleep, digestion, breathing exercises, and Dosha-specific guidance. What's on your mind today?" },
 ];
 
 const doshaElements = {
@@ -48,13 +48,13 @@ const getDefaultRecommendations = () => [
 ];
 
 const aiResponses = {
-  stress: "For stress relief, Ayurveda recommends **Ashwagandha tea** in the evening, along with **Abhyanga** (warm oil self-massage) before bed. Try the 4-7-8 breathing technique: inhale for 4 counts, hold for 7, exhale for 8. This activates your parasympathetic nervous system. 🌿",
-  sleep: "For better sleep, try drinking **warm nutmeg milk** 30 minutes before bed — just a pinch of nutmeg in warm milk with a drop of ghee. Avoid screens after 9 PM and practice **Nadi Shodhana** (alternate nostril breathing) for 5 minutes. Your body will thank you. 🌙",
-  digestion: "For healthy digestion, start your morning with **warm lemon water with fresh ginger**. Eat your largest meal at lunch when your Agni (digestive fire) is strongest. Avoid cold drinks with meals — warm water or herbal tea is ideal. Consider adding **Triphala** before bed. 🍃",
-  morning: "An ideal Ayurvedic morning routine (Dinacharya): Wake before 6 AM → Scrape your tongue → Oil pulling with sesame oil → Warm lemon water → 15 min yoga or walking → Meditation → Nourishing breakfast. Start with just 2-3 practices and build gradually. ☀️",
-  breathing: "Here are three powerful Pranayama exercises:\n\n**Box Breathing (4-4-4-4):** Inhale 4s, hold 4s, exhale 4s, hold 4s. Great for immediate calm.\n\n**4-7-8 Breathing:** Inhale 4s, hold 7s, exhale 8s. A natural nervous system tranquilizer.\n\n**Nadi Shodhana:** Alternate nostril breathing for 5 minutes. Balances brain hemispheres. 🌬️",
-  diet: "Ayurvedic diet principles:\n\n🔥 **Pitta:** Favor cooling foods — cucumber, coconut, mint, sweet fruits. Avoid spicy, acidic foods.\n\n🌬️ **Vata:** Favor warm, grounding foods — soups, ghee, cooked grains. Avoid raw, cold foods.\n\n🌍 **Kapha:** Favor light, warming foods — ginger, greens, beans. Avoid heavy, oily foods.",
-  default: "That's a wonderful question! In Ayurveda, balance is the key to wellness. I'd recommend starting with understanding your Dosha constitution — take our quiz if you haven't already. For general wellness, focus on: rising with the sun, drinking warm water, eating mindfully, and practicing daily meditation. How can I help you further? 🌿",
+  stress: "For stress relief, Ayurveda recommends **Ashwagandha tea** in the evening, along with **Abhyanga** (warm oil self-massage) before bed. Try the 4-7-8 breathing technique: inhale for 4 counts, hold for 7, exhale for 8. This activates your parasympathetic nervous system.",
+  sleep: "For better sleep, try drinking **warm nutmeg milk** 30 minutes before bed — just a pinch of nutmeg in warm milk with a drop of ghee. Avoid screens after 9 PM and practice **Nadi Shodhana** (alternate nostril breathing) for 5 minutes. Your body will thank you.",
+  digestion: "For healthy digestion, start your morning with **warm lemon water with fresh ginger**. Eat your largest meal at lunch when your Agni (digestive fire) is strongest. Avoid cold drinks with meals — warm water or herbal tea is ideal. Consider adding **Triphala** before bed.",
+  morning: "An ideal Ayurvedic morning routine (Dinacharya): Wake before 6 AM → Scrape your tongue → Oil pulling with sesame oil → Warm lemon water → 15 min yoga or walking → Meditation → Nourishing breakfast. Start with just 2-3 practices and build gradually.",
+  breathing: "Here are three powerful Pranayama exercises:\n\n**Box Breathing (4-4-4-4):** Inhale 4s, hold 4s, exhale 4s, hold 4s. Great for immediate calm.\n\n**4-7-8 Breathing:** Inhale 4s, hold 7s, exhale 8s. A natural nervous system tranquilizer.\n\n**Nadi Shodhana:** Alternate nostril breathing for 5 minutes. Balances brain hemispheres.",
+  diet: "Ayurvedic diet principles:\n\n**Pitta:** Favor cooling foods — cucumber, coconut, mint, sweet fruits. Avoid spicy, acidic foods.\n\n**Vata:** Favor warm, grounding foods — soups, ghee, cooked grains. Avoid raw, cold foods.\n\n**Kapha:** Favor light, warming foods — ginger, greens, beans. Avoid heavy, oily foods.",
+  default: "That's a wonderful question! In Ayurveda, balance is the key to wellness. I'd recommend starting with understanding your Dosha constitution — take our quiz if you haven't already. For general wellness, focus on: rising with the sun, drinking warm water, eating mindfully, and practicing daily meditation. How can I help you further?",
 };
 
 function getAiResponse(text) {

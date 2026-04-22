@@ -1,20 +1,21 @@
 import { motion } from 'framer-motion';
+import { Wind, Flame, Globe } from 'lucide-react';
 
 const doshaInfo = {
   Vata: {
     color: 'var(--vata)',
     bg: 'var(--vata-light)',
-    emoji: '🌬️'
+    icon: <Wind size={24} />
   },
   Pitta: {
     color: 'var(--pitta)',
     bg: 'var(--pitta-light)',
-    emoji: '🔥'
+    icon: <Flame size={24} />
   },
   Kapha: {
     color: 'var(--kapha)',
     bg: 'var(--kapha-light)',
-    emoji: '🌍'
+    icon: <Globe size={24} />
   }
 };
 
@@ -34,7 +35,7 @@ export default function ResultCard({ title, dominantDosha, explanation, delay = 
           className="result-category-card__icon"
           style={{ backgroundColor: info.bg }}
         >
-          {info.emoji}
+          {info.icon}
         </div>
       </div>
       

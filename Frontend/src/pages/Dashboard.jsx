@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   Flame, Wind, TreeDeciduous, Compass, BarChart3, Sun, Moon,
-  BookOpen, Sparkles, ArrowRight, Leaf, Heart
+  BookOpen, Sparkles, ArrowRight, Leaf, Heart, Frown, Meh, Smile
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Tooltip } from 'recharts';
@@ -82,7 +82,7 @@ export default function Dashboard() {
 
   const hasRoutine = Boolean(routine?.morning?.length || routine?.evening?.length);
 
-  const treeStage = sattvaPoints >= 100 ? '🍃🌳🍃' : sattvaPoints >= 50 ? '🌳' : sattvaPoints >= 20 ? '🌿' : '🌱';
+  const treeStage = sattvaPoints >= 100 ? <TreeDeciduous size={28} /> : sattvaPoints >= 50 ? <TreeDeciduous size={24} /> : sattvaPoints >= 20 ? <Leaf size={24} /> : <Leaf size={18} />;
   const treeName = sattvaPoints >= 100 ? 'Flourishing Banyan' : sattvaPoints >= 50 ? 'Young Tree' : sattvaPoints >= 20 ? 'Sprout' : 'Seedling';
 
   if (isLoading) {
@@ -100,7 +100,7 @@ export default function Dashboard() {
       <div className="dashboard">
         <div className="dashboard__header">
           <div>
-            <h1 className="dashboard__greeting">Welcome, {profile.name} 🙏</h1>
+            <h1 className="dashboard__greeting">Welcome, {profile.name}</h1>
             <p className="dashboard__subtitle">Your personalized wellness command center</p>
           </div>
         </div>
@@ -169,9 +169,9 @@ export default function Dashboard() {
             </div>
             <div className="mood-buttons">
               {[
-                { emoji: '😔', label: 'Low', value: 2 },
-                { emoji: '😐', label: 'Neutral', value: 3 },
-                { emoji: '😊', label: 'Great', value: 5 },
+                { icon: <Frown size={24} />, label: 'Low', value: 2 },
+                { icon: <Meh size={24} />, label: 'Neutral', value: 3 },
+                { icon: <Smile size={24} />, label: 'Great', value: 5 },
               ].map((m) => (
                 <motion.button
                   key={m.value}
@@ -181,7 +181,7 @@ export default function Dashboard() {
                   onClick={() => handleLogMood(m.value)}
                   disabled={isSavingMood}
                 >
-                  <span className="mood-btn__emoji">{m.emoji}</span>
+                  <span className="mood-btn__icon">{m.icon}</span>
                   <span className="mood-btn__label">{m.label}</span>
                 </motion.button>
               ))}
@@ -218,7 +218,7 @@ export default function Dashboard() {
               <>
                 {routine.morning?.length > 0 && (
                   <div className="routine-section">
-                    <h4 className="routine-label">☀️ Morning · {routine.morning.length} items</h4>
+                    <h4 className="routine-label" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Sun size={16} /> Morning · {routine.morning.length} items</h4>
                     <div className="routine-items">
                       {routine.morning.map((r) => (
                         <div key={r} className="ritual-pill">{r}</div>
@@ -229,7 +229,7 @@ export default function Dashboard() {
                 
                 {routine.evening?.length > 0 && (
                   <div className="routine-section">
-                    <h4 className="routine-label" style={{ marginTop: '16px' }}>🌙 Evening · {routine.evening.length} items</h4>
+                    <h4 className="routine-label" style={{ marginTop: '16px', display: 'flex', alignItems: 'center', gap: '6px' }}><Moon size={16} /> Evening · {routine.evening.length} items</h4>
                     <div className="routine-items">
                       {routine.evening.map((r) => (
                         <div key={r} className="ritual-pill">{r}</div>
@@ -271,7 +271,7 @@ export default function Dashboard() {
             <div className="companion-preview">
               <div className="companion-msg">
                 <div className="companion-msg__avatar"><Leaf size={12} /></div>
-                <p>Remember to take your evening walk today — it's a wonderful way to cool Pitta energy before sunset. 🌅</p>
+                <p>Remember to take your evening walk today — it's a wonderful way to cool Pitta energy before sunset.</p>
               </div>
             </div>
             <Link to="/chat" className="widget__link">

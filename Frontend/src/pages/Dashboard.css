@@ -195,7 +195,7 @@
   background: rgba(44, 95, 78, 0.06);
   box-shadow: 0 0 0 1px var(--primary);
 }
-.mood-btn__emoji { font-size: 1.5rem; }
+.mood-btn__icon { font-size: 1.5rem; }
 .mood-btn__label { font-size: 0.72rem; color: var(--text-secondary); font-weight: 500; }
 
 .mood-chart {

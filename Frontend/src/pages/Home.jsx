@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { motion } from 'framer-motion';
-import { Compass, Sparkles, Sun, ArrowRight, ChevronRight, Star, Leaf, Quote } from 'lucide-react';
+import { Compass, Sparkles, Sun, ArrowRight, ChevronRight, Star, Leaf, Quote, TreeDeciduous } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AnimatedPage from '../components/AnimatedPage';
 import ScrollReveal from '../components/ScrollReveal';
@@ -143,9 +143,9 @@ export default function Home() {
                   <Leaf size={42} />
                 </div>
               </div>
-              <motion.div className="hero__float-leaf hero__float-leaf--1" variants={floatingVariants} animate="animate">🍃</motion.div>
-              <motion.div className="hero__float-leaf hero__float-leaf--2" variants={floatingVariants2} animate="animate">🌿</motion.div>
-              <motion.div className="hero__float-leaf hero__float-leaf--3" variants={floatingVariants} animate="animate">✦</motion.div>
+              <motion.div className="hero__float-leaf hero__float-leaf--1" variants={floatingVariants} animate="animate"><Leaf size={24} /></motion.div>
+              <motion.div className="hero__float-leaf hero__float-leaf--2" variants={floatingVariants2} animate="animate"><TreeDeciduous size={24} /></motion.div>
+              <motion.div className="hero__float-leaf hero__float-leaf--3" variants={floatingVariants} animate="animate"><Sparkles size={24} /></motion.div>
             </motion.div>
           </div>
         </section>

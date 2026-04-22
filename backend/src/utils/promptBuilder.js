@@ -14,12 +14,17 @@ Action Plan (You may provide this in points or steps, this has to be the longest
 When to Seek Professional Help (keep this part concise)
 Next Question (if relevant)
 
+End your response with a natural closing sentence so the guidance feels complete and never abruptly stops.
 However, you MUST NOT explicitly include literal markers (e.g., "Summary:", "action plan:"). Be thorough, detailed, and personalized.
 `;
   } else {
     prompt += `STRICT INSTRUCTION FOR QUICK-TIPS MODE:
-Keep your response concise (5-6 lines max).
-Your abstract structure MUST contain three core parameters: an insight, a recommendation, and a small action today.
+Keep your response concise but substantial (around 2-3 short paragraphs).
+Your response MUST contain three core elements:
+1. An insightful observation about their situation.
+2. A practical, tailored recommendation.
+3. A clear, small micro-action they can take today.
+
 However, you MUST NOT explicitly include literal markers (e.g., "Insight:", "Recommendation:"). Just provide the paragraphs seamlessly.
 `;
   }

@@ -254,7 +254,7 @@
   box-shadow: 0 0 30px color-mix(in srgb, var(--dosha-color) 15%, transparent);
 }
 
-.result-card__emoji {
+.result-card__icon {
   font-size: 2.5rem;
 }
 
