@@ -18,8 +18,11 @@
 
   /* Dosha Colors */
   --vata: #7B68EE;
+  --vata-light: rgba(123, 104, 238, 0.12);
   --pitta: #FF6B35;
+  --pitta-light: rgba(255, 107, 53, 0.12);
   --kapha: #8B9068; /* Green/Brown */
+  --kapha-light: rgba(139, 144, 104, 0.12);
 
   /* Gradients */
   --gradient-hero: linear-gradient(135deg, #F4F1EA 0%, #E8E2D6 100%);
