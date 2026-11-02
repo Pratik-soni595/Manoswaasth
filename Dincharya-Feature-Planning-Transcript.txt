@@ -1,0 +1,49 @@
+Manoswaasth Dincharya Feature Planning
+Conversation transcript
+
+User:
+The current project only has a prakriti evaluation and chatbot feature. I want to add Dincharya suggestions based on the present work routine, medical conditions, and body type details stored in the database. Don't do anything right away; give me a plan to implement these features. Is the present tech stack compatible, or do we need to find another way? Does this require completely shifting the backend from JavaScript to Python?
+
+Assistant:
+The current React, Node.js/Express, and MongoDB stack is compatible. The existing project includes a routine builder, stored primary dosha, detailed quiz results, and a Gemini-backed AI service. Work routine and medical conditions are not currently stored, so they would need to be collected and stored if personalization depends on them. A sensible plan is to define the relevant inputs, add profile fields and consent, build a reviewed suggestion catalog and rules, expose an authenticated suggestions API, and evaluate the feature before considering ML. Python can be added later as a separate service; a full backend migration is not necessary.
+
+User:
+Since this is a college project, I need to implement it through a Python model, it is required. Is it necessary to modify the present data models? My proposed flow is to collect the information from a form when a user asks for a Dincharya, use that and existing database information, and keep the architecture intact.
+
+Assistant:
+That flow can avoid database changes for generation. React can collect the schedule at request time; Node can combine it with saved dosha data and call a Python service. Keep Node responsible for authentication, MongoDB, and the public API. Persisting the form inputs is optional. A Python rules engine is different from an actual ML model, so the college requirement should clarify which is expected.
+
+User:
+By model I mean actual machine learning model. For the time being we'll have to generate sample training data (artificial) to train that model. How does that change things?
+
+Assistant:
+The architecture can stay largely the same, but Python now needs a training workflow and an inference service. Define the prediction task and data format, generate synthetic examples, split training and evaluation data, train and assess a simple model, then serve it behind an API called by Node. Artificial data demonstrates the pipeline but only reflects the assumptions used to generate it; it does not validate real-world effectiveness. Database changes remain optional for a stateless first version.
+
+User:
+So maybe we should start implementing this feature from the model itself?
+
+Assistant:
+Yes. Start by defining the prediction task, inputs, outputs, and how predictions will be evaluated. Then create the synthetic data, train and evaluate a simple Python model, build its inference service, and connect the existing Node backend and React form. Decide on persistence later.
+
+User:
+I have determined the input and desired output for our model:
+
+Inputs:
+- Work routine: time they leave for work, break start, break end, time they get back home
+- Primary dosha (stored in database)
+- Sleep cycle: sleep time, wake time
+
+Outputs:
+- Four small tasks, which may differ or repeat: for break time, when they get back home, before bed, and after waking
+
+Assistant:
+That is a clear initial contract. The four output slots map to break, after work, before bed, and after waking. The break duration can constrain which task fits. It was suggested to return one task per slot, with a task ID/title, short description, and suggested time. Define a task catalog and mapping assumptions before creating synthetic examples.
+
+User:
+Let's discard the work departure time for now. Break duration: the task or ritual suggested for this time slot must be short and crisp.
+
+Assistant:
+The revised inputs are break start and end, time home from work, primary dosha from the database, sleep time, and wake time. The outputs are one short task per slot: during break, after getting home, before bed, and after waking. Work departure time is excluded, and the break task should fit the duration. The next step is to define the task catalog and how tasks map to dosha and available time.
+
+---
+End of transcript

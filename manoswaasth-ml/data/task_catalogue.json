@@ -1,0 +1,1123 @@
+{
+  "catalogue_name": "Manoswaasth Dincharya Activity Catalogue",
+  "version": "1.0.0",
+  "language": "en",
+  "description": "A curated catalogue of 35 Ayurveda-inspired, practical daily activities for a prototype personalised Dincharya recommendation feature.",
+  "dosha_affinity_scale": {
+    "1": "Lower initial suitability",
+    "2": "Moderate initial suitability",
+    "3": "Higher initial suitability",
+    "note": "These are heuristic product-design labels, not clinically validated dosha-effect scores or medical recommendations."
+  },
+  "supported_prakriti_profiles": [
+    "vata",
+    "pitta",
+    "kapha",
+    "vata-pitta",
+    "vata-kapha",
+    "pitta-kapha",
+    "vata-pitta-kapha"
+  ],
+  "categories": [
+    {
+      "category_id": "work_break",
+      "label": "During Work Break",
+      "task_count": 8,
+      "duration_guideline_minutes": [
+        1,
+        5
+      ]
+    },
+    {
+      "category_id": "after_work",
+      "label": "After Returning Home",
+      "task_count": 9,
+      "duration_guideline_minutes": [
+        5,
+        15
+      ]
+    },
+    {
+      "category_id": "before_bed",
+      "label": "Before Going to Bed",
+      "task_count": 9,
+      "duration_guideline_minutes": [
+        3,
+        15
+      ]
+    },
+    {
+      "category_id": "after_waking",
+      "label": "After Waking Up",
+      "task_count": 9,
+      "duration_guideline_minutes": [
+        2,
+        15
+      ]
+    }
+  ],
+  "selection_notes": [
+    "Use the user's stored Prakriti classification as an input to recommendation logic.",
+    "For mixed Prakriti profiles, combine or weight the relevant dosha affinity values; do not treat the heuristic scores as clinical evidence.",
+    "Time availability must be checked against duration_minutes before a task is selected.",
+    "Medical-condition and safety screening must be applied separately from Prakriti matching.",
+    "The catalogue contains traditional practices and modern adaptations; ayurvedic_principle describes the inspiration and does not claim proven clinical efficacy.",
+    "The catalogue does not diagnose, treat, or replace advice from a qualified healthcare professional."
+  ],
+  "tasks": [
+    {
+      "task_id": "BR01",
+      "title": "Mindful Breathing",
+      "category": "work_break",
+      "duration_minutes": 3,
+      "description": "Pause work, sit comfortably, and breathe naturally with relaxed attention. Do not force or hold the breath.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 3,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Inspired by pranayama and cultivation of mental calm; this is gentle breath awareness, not a therapeutic breathing protocol.",
+      "intensity": "low",
+      "suitable_time": [
+        "work_break",
+        "daytime"
+      ],
+      "safety_restrictions": [
+        "Stop if dizzy, breathless, or uncomfortable.",
+        "Do not use forced breathing or breath retention."
+      ],
+      "tags": [
+        "breath_awareness",
+        "calm",
+        "short_break"
+      ],
+      "source_references": [
+        "Charaka Samhita Online - Dinacharya (traditional daily-regimen context)",
+        "NCCIH - Ayurvedic Medicine: In Depth (evidence and safety context)"
+      ]
+    },
+    {
+      "task_id": "BR02",
+      "title": "Gentle Neck and Shoulder Stretches",
+      "category": "work_break",
+      "duration_minutes": 3,
+      "description": "Slowly roll the shoulders and gently move the neck through a comfortable range without pulling or forcing.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 2,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Modern adaptation of gentle movement and vyayama; not a classical named Dinacharya procedure.",
+      "intensity": "low",
+      "suitable_time": [
+        "work_break",
+        "daytime"
+      ],
+      "safety_restrictions": [
+        "Avoid circles or movements that cause neck pain.",
+        "Stop if pain, tingling, or dizziness occurs."
+      ],
+      "tags": [
+        "mobility",
+        "neck",
+        "shoulders",
+        "desk_break"
+      ],
+      "source_references": [
+        "WHO - Physical Activity"
+      ]
+    },
+    {
+      "task_id": "BR03",
+      "title": "Comfortable Water Pause",
+      "category": "work_break",
+      "duration_minutes": 2,
+      "description": "Take a brief pause to drink water according to thirst and personal fluid needs. Warm or room-temperature water is optional.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 2,
+        "kapha": 1
+      },
+      "ayurvedic_principle": "Inspired by traditional attention to drinking habits and Ushapana; hydration needs vary and warm water is not universally required.",
+      "intensity": "low",
+      "suitable_time": [
+        "work_break",
+        "daytime"
+      ],
+      "safety_restrictions": [
+        "Do not force excess water.",
+        "Users with clinician-prescribed fluid restrictions should follow that advice."
+      ],
+      "tags": [
+        "hydration",
+        "pause",
+        "simple_routine"
+      ],
+      "source_references": [
+        "Charaka Samhita Online - Dinacharya"
+      ]
+    },
+    {
+      "task_id": "BR04",
+      "title": "Screen and Eye Rest",
+      "category": "work_break",
+      "duration_minutes": 2,
+      "description": "Look away from the screen at a distant object, blink naturally, and relax the face. Keep the eyes open or closed comfortably.",
+      "dosha_affinity": {
+        "vata": 2,
+        "pitta": 3,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "A modern screen-break adaptation; it should not be presented as a treatment for eye disorders.",
+      "intensity": "low",
+      "suitable_time": [
+        "work_break",
+        "daytime"
+      ],
+      "safety_restrictions": [
+        "Do not press or rub the eyes.",
+        "Seek appropriate eye care for persistent pain or visual changes."
+      ],
+      "tags": [
+        "screen_break",
+        "eye_rest",
+        "relaxation"
+      ],
+      "source_references": [
+        "Modern workplace screen-break guidance"
+      ]
+    },
+    {
+      "task_id": "BR05",
+      "title": "Short Mindful Walk",
+      "category": "work_break",
+      "duration_minutes": 5,
+      "description": "Walk at an easy, comfortable pace while paying attention to steps and surroundings.",
+      "dosha_affinity": {
+        "vata": 2,
+        "pitta": 2,
+        "kapha": 3
+      },
+      "ayurvedic_principle": "Inspired by vihara and moderate vyayama; pace should be adapted to the individual.",
+      "intensity": "low",
+      "suitable_time": [
+        "work_break",
+        "daytime"
+      ],
+      "safety_restrictions": [
+        "Use a safe, accessible route.",
+        "Adapt or skip if walking is restricted or causes symptoms."
+      ],
+      "tags": [
+        "walking",
+        "movement",
+        "mindfulness"
+      ],
+      "source_references": [
+        "WHO - Physical Activity"
+      ]
+    },
+    {
+      "task_id": "BR06",
+      "title": "Seated Spinal Mobility",
+      "category": "work_break",
+      "duration_minutes": 3,
+      "description": "Sit upright and gently lengthen the spine; make small, comfortable torso movements without forcing a twist.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 2,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Modern gentle-movement adaptation inspired by vyayama and yoga.",
+      "intensity": "low",
+      "suitable_time": [
+        "work_break",
+        "daytime"
+      ],
+      "safety_restrictions": [
+        "Avoid twisting or bending that causes pain.",
+        "Skip if advised to restrict spinal movement."
+      ],
+      "tags": [
+        "mobility",
+        "posture",
+        "desk_break"
+      ],
+      "source_references": [
+        "WHO - Physical Activity"
+      ]
+    },
+    {
+      "task_id": "BR07",
+      "title": "Quiet Mindful Pause",
+      "category": "work_break",
+      "duration_minutes": 3,
+      "description": "Step away from active work, sit quietly, and notice sounds and bodily sensations without trying to change them.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 3,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Inspired by sattva-oriented mental discipline; a contemporary mindfulness adaptation.",
+      "intensity": "low",
+      "suitable_time": [
+        "work_break",
+        "daytime"
+      ],
+      "safety_restrictions": [
+        "If stillness increases distress, switch to a grounding activity such as looking around or walking."
+      ],
+      "tags": [
+        "mindfulness",
+        "calm",
+        "mental_pause"
+      ],
+      "source_references": [
+        "Charaka Samhita Online - Dinacharya (general daily-regimen context)"
+      ]
+    },
+    {
+      "task_id": "BR08",
+      "title": "Standing Stretch and Movement",
+      "category": "work_break",
+      "duration_minutes": 3,
+      "description": "Stand if comfortable, gently reach upward, move the ankles, and take a few relaxed steps.",
+      "dosha_affinity": {
+        "vata": 2,
+        "pitta": 2,
+        "kapha": 3
+      },
+      "ayurvedic_principle": "Modern brief vyayama-inspired movement break.",
+      "intensity": "low",
+      "suitable_time": [
+        "work_break",
+        "daytime"
+      ],
+      "safety_restrictions": [
+        "Use support if balance is limited.",
+        "Skip movements that cause pain or dizziness."
+      ],
+      "tags": [
+        "movement",
+        "stretching",
+        "sedentary_break"
+      ],
+      "source_references": [
+        "WHO - Physical Activity"
+      ]
+    },
+    {
+      "task_id": "HM01",
+      "title": "Gentle Abhyanga Self-Massage",
+      "category": "after_work",
+      "duration_minutes": 10,
+      "description": "If suitable, gently massage a small area such as hands, feet, or limbs using a skin-compatible oil, then wash off as preferred.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 2,
+        "kapha": 1
+      },
+      "ayurvedic_principle": "Abhyanga is a traditional Ayurvedic oil-massage practice associated with Dinacharya.",
+      "intensity": "low",
+      "suitable_time": [
+        "after_work",
+        "evening"
+      ],
+      "safety_restrictions": [
+        "Avoid with oil allergy, irritated or broken skin, or where a clinician has advised against massage.",
+        "Use a small patch test first.",
+        "Avoid slipping; clean oil from floors."
+      ],
+      "tags": [
+        "abhyanga",
+        "self_care",
+        "oil_massage"
+      ],
+      "source_references": [
+        "Charaka Samhita Online - Dinacharya",
+        "NCCIH - Ayurvedic Medicine: In Depth"
+      ]
+    },
+    {
+      "task_id": "HM02",
+      "title": "Pada Abhyanga-Inspired Foot Massage",
+      "category": "after_work",
+      "duration_minutes": 5,
+      "description": "Gently massage the feet with clean hands; optional use of a suitable, skin-compatible oil. Keep pressure light.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 2,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Inspired by Pada Abhyanga, the traditional practice of foot oil massage.",
+      "intensity": "low",
+      "suitable_time": [
+        "after_work",
+        "evening"
+      ],
+      "safety_restrictions": [
+        "Avoid on wounds, infection, reduced foot sensation, or inflamed skin.",
+        "Avoid oil if it creates a slipping risk."
+      ],
+      "tags": [
+        "pada_abhyanga",
+        "foot_care",
+        "relaxation"
+      ],
+      "source_references": [
+        "Charaka Samhita Online - Dinacharya"
+      ]
+    },
+    {
+      "task_id": "HM03",
+      "title": "Relaxed Evening Walk",
+      "category": "after_work",
+      "duration_minutes": 10,
+      "description": "Take an easy walk in a safe place, at a pace that allows comfortable conversation.",
+      "dosha_affinity": {
+        "vata": 2,
+        "pitta": 3,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Inspired by moderate vihara and vyayama; avoid overexertion.",
+      "intensity": "low",
+      "suitable_time": [
+        "after_work",
+        "evening"
+      ],
+      "safety_restrictions": [
+        "Choose a safe route and suitable weather.",
+        "Adapt to mobility, cardiovascular, or other medical restrictions."
+      ],
+      "tags": [
+        "walking",
+        "transition",
+        "movement"
+      ],
+      "source_references": [
+        "WHO - Physical Activity"
+      ]
+    },
+    {
+      "task_id": "HM04",
+      "title": "Dynamic Mobility Routine",
+      "category": "after_work",
+      "duration_minutes": 10,
+      "description": "Perform gentle, controlled movements such as shoulder rolls, ankle mobility, and comfortable arm and leg movements.",
+      "dosha_affinity": {
+        "vata": 2,
+        "pitta": 2,
+        "kapha": 3
+      },
+      "ayurvedic_principle": "Modern adaptation of vyayama and yoga-based movement.",
+      "intensity": "moderate",
+      "suitable_time": [
+        "after_work",
+        "evening"
+      ],
+      "safety_restrictions": [
+        "Keep movements pain-free.",
+        "Avoid vigorous exercise close to bedtime if it disrupts sleep."
+      ],
+      "tags": [
+        "mobility",
+        "movement",
+        "stretching"
+      ],
+      "source_references": [
+        "WHO - Physical Activity"
+      ]
+    },
+    {
+      "task_id": "HM05",
+      "title": "Mindful Nature Walk",
+      "category": "after_work",
+      "duration_minutes": 10,
+      "description": "Walk in a safe outdoor or green space and gently notice the surroundings without rushing.",
+      "dosha_affinity": {
+        "vata": 2,
+        "pitta": 3,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Modern vihara-inspired routine combining gentle movement and a calming environment.",
+      "intensity": "low",
+      "suitable_time": [
+        "after_work",
+        "evening"
+      ],
+      "safety_restrictions": [
+        "Consider air quality, heat, allergies, daylight, and personal safety.",
+        "Use an indoor alternative when needed."
+      ],
+      "tags": [
+        "nature",
+        "walking",
+        "mindfulness"
+      ],
+      "source_references": [
+        "WHO - Physical Activity"
+      ]
+    },
+    {
+      "task_id": "HM06",
+      "title": "Gentle Yoga Practice",
+      "category": "after_work",
+      "duration_minutes": 10,
+      "description": "Choose a short sequence of comfortable, beginner-friendly yoga postures and move without strain.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 2,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Yoga is a traditional mind-body discipline used here as a gentle daily movement option.",
+      "intensity": "low",
+      "suitable_time": [
+        "after_work",
+        "evening"
+      ],
+      "safety_restrictions": [
+        "Avoid advanced postures and painful ranges.",
+        "Adapt for pregnancy, injuries, balance issues, or clinician-directed restrictions."
+      ],
+      "tags": [
+        "yoga",
+        "mobility",
+        "mind_body"
+      ],
+      "source_references": [
+        "Ministry of AYUSH - Yoga resources",
+        "WHO - Physical Activity"
+      ]
+    },
+    {
+      "task_id": "HM07",
+      "title": "Comfortable Bathing Ritual",
+      "category": "after_work",
+      "duration_minutes": 10,
+      "description": "Take a comfortable bath or shower as part of a regular personal-care routine; avoid extremes of water temperature.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 1,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Snana (bathing) is described within traditional daily-regimen practices; temperature preference should be individualised.",
+      "intensity": "low",
+      "suitable_time": [
+        "after_work",
+        "evening"
+      ],
+      "safety_restrictions": [
+        "Avoid very hot water, especially with heat sensitivity or certain skin conditions.",
+        "Use non-slip surfaces."
+      ],
+      "tags": [
+        "snana",
+        "hygiene",
+        "transition"
+      ],
+      "source_references": [
+        "Charaka Samhita Online - Dinacharya"
+      ]
+    },
+    {
+      "task_id": "HM08",
+      "title": "Gentle Scalp Massage",
+      "category": "after_work",
+      "duration_minutes": 5,
+      "description": "Use fingertips to gently massage the scalp without scratching or applying strong pressure; oil is optional.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 2,
+        "kapha": 1
+      },
+      "ayurvedic_principle": "Inspired by traditional head-oil and self-care practices; this simple version does not claim therapeutic effects.",
+      "intensity": "low",
+      "suitable_time": [
+        "after_work",
+        "evening"
+      ],
+      "safety_restrictions": [
+        "Avoid with scalp infection, irritation, open lesions, or sensitivity to oils.",
+        "Stop if discomfort occurs."
+      ],
+      "tags": [
+        "scalp_care",
+        "massage",
+        "self_care"
+      ],
+      "source_references": [
+        "Charaka Samhita Online - Dinacharya",
+        "NCCIH - Ayurvedic Medicine: In Depth"
+      ]
+    },
+    {
+      "task_id": "HM09",
+      "title": "Relaxing Music Pause",
+      "category": "after_work",
+      "duration_minutes": 10,
+      "description": "Listen to calm or personally enjoyable music at a comfortable volume while resting.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 3,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "A contemporary sensory-rest practice inspired by the Ayurvedic emphasis on balanced sensory experience.",
+      "intensity": "low",
+      "suitable_time": [
+        "after_work",
+        "evening"
+      ],
+      "safety_restrictions": [
+        "Keep volume comfortable.",
+        "Choose music that feels calming rather than overstimulating."
+      ],
+      "tags": [
+        "music",
+        "relaxation",
+        "sensory_balance"
+      ],
+      "source_references": [
+        "Charaka Samhita Online - Dinacharya (general lifestyle context)"
+      ]
+    },
+    {
+      "task_id": "SL01",
+      "title": "Gentle Foot Massage",
+      "category": "before_bed",
+      "duration_minutes": 5,
+      "description": "Gently massage the feet with clean hands; optional use of a small amount of suitable skin-compatible oil.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 2,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Inspired by Pada Abhyanga, a traditional foot-massage practice.",
+      "intensity": "low",
+      "suitable_time": [
+        "before_bed",
+        "night"
+      ],
+      "safety_restrictions": [
+        "Avoid on wounds, infection, inflamed skin, or feet with reduced sensation.",
+        "Prevent slipping if oil is used."
+      ],
+      "tags": [
+        "pada_abhyanga",
+        "foot_care",
+        "wind_down"
+      ],
+      "source_references": [
+        "Charaka Samhita Online - Dinacharya"
+      ]
+    },
+    {
+      "task_id": "SL02",
+      "title": "Screen-Free Wind-Down",
+      "category": "before_bed",
+      "duration_minutes": 15,
+      "description": "Put away phones and other screens for a short period before bed and choose a quiet offline activity.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 3,
+        "kapha": 3
+      },
+      "ayurvedic_principle": "Modern adaptation supporting a regular Ratricharya and sleep routine.",
+      "intensity": "low",
+      "suitable_time": [
+        "before_bed",
+        "night"
+      ],
+      "safety_restrictions": [
+        "Adapt the routine where screens are required for accessibility or essential needs."
+      ],
+      "tags": [
+        "screen_free",
+        "sleep_hygiene",
+        "wind_down"
+      ],
+      "source_references": [
+        "NHS - Insomnia"
+      ]
+    },
+    {
+      "task_id": "SL03",
+      "title": "Gentle Bedtime Stretching",
+      "category": "before_bed",
+      "duration_minutes": 5,
+      "description": "Try a few comfortable stretches for the back, shoulders, or legs, keeping the movements slow and easy.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 2,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Gentle yoga-inspired movement adapted for the nighttime routine.",
+      "intensity": "low",
+      "suitable_time": [
+        "before_bed",
+        "night"
+      ],
+      "safety_restrictions": [
+        "Avoid strenuous or painful stretches.",
+        "Skip movements restricted by a clinician."
+      ],
+      "tags": [
+        "stretching",
+        "mobility",
+        "wind_down"
+      ],
+      "source_references": [
+        "NHS - Insomnia",
+        "WHO - Physical Activity"
+      ]
+    },
+    {
+      "task_id": "SL04",
+      "title": "Gentle Alternate-Nostril Breathing",
+      "category": "before_bed",
+      "duration_minutes": 5,
+      "description": "If already familiar and comfortable, practise slow, unforced alternate-nostril breathing without breath retention. Otherwise use natural breath awareness.",
+      "dosha_affinity": {
+        "vata": 2,
+        "pitta": 3,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Nadi Shodhana is a traditional pranayama practice; this entry is a gentle, non-retentive adaptation.",
+      "intensity": "low",
+      "suitable_time": [
+        "before_bed",
+        "night"
+      ],
+      "safety_restrictions": [
+        "Do not force airflow or hold the breath.",
+        "Skip if nasal blockage, respiratory discomfort, dizziness, or anxiety occurs."
+      ],
+      "tags": [
+        "pranayama",
+        "breathing",
+        "wind_down"
+      ],
+      "source_references": [
+        "Ministry of AYUSH - Yoga resources"
+      ]
+    },
+    {
+      "task_id": "SL05",
+      "title": "Gratitude Reflection",
+      "category": "before_bed",
+      "duration_minutes": 3,
+      "description": "Recall or write down one or two things you appreciated about the day, without pressuring yourself to feel positive.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 3,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Modern reflective practice inspired by mental steadiness and sattva-oriented conduct.",
+      "intensity": "low",
+      "suitable_time": [
+        "before_bed",
+        "night"
+      ],
+      "safety_restrictions": [
+        "If reflection becomes distressing, stop and choose a neutral calming activity."
+      ],
+      "tags": [
+        "reflection",
+        "gratitude",
+        "mental_wellbeing"
+      ],
+      "source_references": [
+        "NHS - Insomnia (relaxing bedtime routine context)"
+      ]
+    },
+    {
+      "task_id": "SL06",
+      "title": "Quiet Meditation",
+      "category": "before_bed",
+      "duration_minutes": 5,
+      "description": "Sit or lie comfortably and observe natural breathing or bodily sensations for a few minutes.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 3,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Inspired by dhyana and traditional mind-training practices.",
+      "intensity": "low",
+      "suitable_time": [
+        "before_bed",
+        "night"
+      ],
+      "safety_restrictions": [
+        "If meditation increases distress, stop and use an eyes-open grounding activity."
+      ],
+      "tags": [
+        "meditation",
+        "dhyana",
+        "calm"
+      ],
+      "source_references": [
+        "Ministry of AYUSH - Yoga resources"
+      ]
+    },
+    {
+      "task_id": "SL07",
+      "title": "Quiet Reading",
+      "category": "before_bed",
+      "duration_minutes": 10,
+      "description": "Read a few pages of light, non-work-related material in comfortable lighting.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 3,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Modern wind-down habit compatible with a regular nighttime regimen.",
+      "intensity": "low",
+      "suitable_time": [
+        "before_bed",
+        "night"
+      ],
+      "safety_restrictions": [
+        "Avoid material that is stimulating or stressful.",
+        "Use comfortable lighting."
+      ],
+      "tags": [
+        "reading",
+        "wind_down",
+        "sleep_hygiene"
+      ],
+      "source_references": [
+        "NHS - Insomnia"
+      ]
+    },
+    {
+      "task_id": "SL08",
+      "title": "Prepare Tomorrow's Essentials",
+      "category": "before_bed",
+      "duration_minutes": 5,
+      "description": "Set out essential items for the next day and write down only the most important priorities.",
+      "dosha_affinity": {
+        "vata": 2,
+        "pitta": 3,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Modern routine-building practice that supports regularity and reduces last-minute demands.",
+      "intensity": "low",
+      "suitable_time": [
+        "before_bed",
+        "night"
+      ],
+      "safety_restrictions": [
+        "Keep planning brief; stop if it becomes a source of worry or work-related stimulation."
+      ],
+      "tags": [
+        "routine",
+        "planning",
+        "consistency"
+      ],
+      "source_references": [
+        "NHS - Insomnia (regular sleep routine context)"
+      ]
+    },
+    {
+      "task_id": "SL09",
+      "title": "Consistent Bedtime Ritual",
+      "category": "before_bed",
+      "duration_minutes": 5,
+      "description": "Follow the same simple sequence each night, such as washing up, dimming lights, and getting into bed at a consistent time.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 3,
+        "kapha": 3
+      },
+      "ayurvedic_principle": "Inspired by Ratricharya and regular daily rhythm; modern sleep guidance also supports consistent schedules.",
+      "intensity": "low",
+      "suitable_time": [
+        "before_bed",
+        "night"
+      ],
+      "safety_restrictions": [
+        "Adapt timing to work, caregiving, and medical needs; do not sacrifice adequate sleep to follow a rigid schedule."
+      ],
+      "tags": [
+        "ratricharya",
+        "routine",
+        "sleep_hygiene"
+      ],
+      "source_references": [
+        "Charaka Samhita Online - Dinacharya",
+        "NHS - Insomnia"
+      ]
+    },
+    {
+      "task_id": "WK01",
+      "title": "Morning Water Pause (Ushapana-Inspired)",
+      "category": "after_waking",
+      "duration_minutes": 2,
+      "description": "After waking, drink a comfortable amount of water if thirsty and if it fits your individual fluid needs.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 2,
+        "kapha": 1
+      },
+      "ayurvedic_principle": "Inspired by Ushapana, a traditional morning water practice; specific health benefits are not assumed.",
+      "intensity": "low",
+      "suitable_time": [
+        "after_waking",
+        "morning"
+      ],
+      "safety_restrictions": [
+        "Do not force large volumes.",
+        "Follow clinician advice if fluid intake is restricted."
+      ],
+      "tags": [
+        "ushapana",
+        "hydration",
+        "morning"
+      ],
+      "source_references": [
+        "Charaka Samhita Online - Dinacharya"
+      ]
+    },
+    {
+      "task_id": "WK02",
+      "title": "Tongue Cleaning (Jihwa Nirlekhana)",
+      "category": "after_waking",
+      "duration_minutes": 2,
+      "description": "Gently clean the tongue using a clean tongue scraper or toothbrush, without scraping hard.",
+      "dosha_affinity": {
+        "vata": 2,
+        "pitta": 2,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Jihwa Nirlekhana is a traditional oral-hygiene practice included in descriptions of Dinacharya.",
+      "intensity": "low",
+      "suitable_time": [
+        "after_waking",
+        "morning"
+      ],
+      "safety_restrictions": [
+        "Use gentle pressure and a clean tool.",
+        "Stop if soreness, bleeding, or irritation occurs."
+      ],
+      "tags": [
+        "jihwa_nirlekhana",
+        "oral_hygiene",
+        "morning"
+      ],
+      "source_references": [
+        "Charaka Samhita Online - Dinacharya"
+      ]
+    },
+    {
+      "task_id": "WK03",
+      "title": "Gentle Morning Stretching",
+      "category": "after_waking",
+      "duration_minutes": 5,
+      "description": "Begin with easy shoulder, ankle, and full-body stretches within a comfortable range.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 2,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Inspired by gentle vyayama and yoga-based movement.",
+      "intensity": "low",
+      "suitable_time": [
+        "after_waking",
+        "morning"
+      ],
+      "safety_restrictions": [
+        "Avoid bouncing or forcing stretches.",
+        "Adapt for injuries or mobility restrictions."
+      ],
+      "tags": [
+        "stretching",
+        "mobility",
+        "morning"
+      ],
+      "source_references": [
+        "WHO - Physical Activity"
+      ]
+    },
+    {
+      "task_id": "WK04",
+      "title": "Modified Surya Namaskar",
+      "category": "after_waking",
+      "duration_minutes": 10,
+      "description": "Practise a few slow, modified rounds of Surya Namaskar only if familiar and physically comfortable; a gentle mobility sequence is an alternative.",
+      "dosha_affinity": {
+        "vata": 2,
+        "pitta": 2,
+        "kapha": 3
+      },
+      "ayurvedic_principle": "Traditional yoga sequence commonly used as a morning movement practice; intensity must be individualised.",
+      "intensity": "moderate",
+      "suitable_time": [
+        "after_waking",
+        "morning"
+      ],
+      "safety_restrictions": [
+        "Not suitable for everyone; adapt or omit for injuries, pregnancy, balance issues, or medical restrictions.",
+        "Avoid pushing through pain, dizziness, or breathlessness."
+      ],
+      "tags": [
+        "surya_namaskar",
+        "yoga",
+        "morning_movement"
+      ],
+      "source_references": [
+        "Ministry of AYUSH - Yoga resources",
+        "WHO - Physical Activity"
+      ]
+    },
+    {
+      "task_id": "WK05",
+      "title": "Morning Meditation",
+      "category": "after_waking",
+      "duration_minutes": 5,
+      "description": "Sit comfortably and spend a few minutes noticing natural breathing or setting a calm intention for the day.",
+      "dosha_affinity": {
+        "vata": 3,
+        "pitta": 3,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Inspired by dhyana and sattva-oriented mental discipline.",
+      "intensity": "low",
+      "suitable_time": [
+        "after_waking",
+        "morning"
+      ],
+      "safety_restrictions": [
+        "If stillness is uncomfortable, try a short eyes-open grounding practice."
+      ],
+      "tags": [
+        "meditation",
+        "dhyana",
+        "morning"
+      ],
+      "source_references": [
+        "Ministry of AYUSH - Yoga resources"
+      ]
+    },
+    {
+      "task_id": "WK06",
+      "title": "Gentle Pranayama or Breath Awareness",
+      "category": "after_waking",
+      "duration_minutes": 5,
+      "description": "Practise calm, unforced breathing or simple breath awareness. Avoid rapid breathing and breath retention.",
+      "dosha_affinity": {
+        "vata": 2,
+        "pitta": 3,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Inspired by pranayama; the catalogue uses a conservative beginner-friendly adaptation.",
+      "intensity": "low",
+      "suitable_time": [
+        "after_waking",
+        "morning"
+      ],
+      "safety_restrictions": [
+        "No forced breathing or breath retention.",
+        "Stop if dizzy, breathless, or uncomfortable."
+      ],
+      "tags": [
+        "pranayama",
+        "breathing",
+        "morning"
+      ],
+      "source_references": [
+        "Ministry of AYUSH - Yoga resources"
+      ]
+    },
+    {
+      "task_id": "WK07",
+      "title": "Outdoor Daylight Pause",
+      "category": "after_waking",
+      "duration_minutes": 10,
+      "description": "Spend a few minutes outdoors in ordinary daylight, without looking directly at the sun.",
+      "dosha_affinity": {
+        "vata": 2,
+        "pitta": 2,
+        "kapha": 3
+      },
+      "ayurvedic_principle": "Modern circadian-routine adaptation; not a classical Ayurvedic treatment.",
+      "intensity": "low",
+      "suitable_time": [
+        "after_waking",
+        "morning"
+      ],
+      "safety_restrictions": [
+        "Never look directly at the sun.",
+        "Consider heat, UV exposure, air quality, and photosensitivity; use shade and sun protection as appropriate."
+      ],
+      "tags": [
+        "daylight",
+        "morning",
+        "routine"
+      ],
+      "source_references": [
+        "NHS - Insomnia (sleep routine context)"
+      ]
+    },
+    {
+      "task_id": "WK08",
+      "title": "Morning Walk",
+      "category": "after_waking",
+      "duration_minutes": 10,
+      "description": "Take a comfortable walk at a pace appropriate to your fitness and energy level.",
+      "dosha_affinity": {
+        "vata": 2,
+        "pitta": 2,
+        "kapha": 3
+      },
+      "ayurvedic_principle": "Inspired by morning vihara and vyayama; duration and intensity should be individualised.",
+      "intensity": "low",
+      "suitable_time": [
+        "after_waking",
+        "morning"
+      ],
+      "safety_restrictions": [
+        "Choose a safe route and suitable weather.",
+        "Adapt to medical and mobility restrictions."
+      ],
+      "tags": [
+        "walking",
+        "vyayama",
+        "morning"
+      ],
+      "source_references": [
+        "Charaka Samhita Online - Dinacharya",
+        "WHO - Physical Activity"
+      ]
+    },
+    {
+      "task_id": "WK09",
+      "title": "Morning Oral Hygiene and Gentle Rinsing",
+      "category": "after_waking",
+      "duration_minutes": 3,
+      "description": "Brush teeth with fluoride toothpaste and rinse the mouth with clean water as part of morning hygiene.",
+      "dosha_affinity": {
+        "vata": 2,
+        "pitta": 2,
+        "kapha": 2
+      },
+      "ayurvedic_principle": "Dantadhavana is a traditional daily oral-hygiene practice; this entry follows contemporary safe oral-care guidance.",
+      "intensity": "low",
+      "suitable_time": [
+        "after_waking",
+        "morning"
+      ],
+      "safety_restrictions": [
+        "Use a suitable toothbrush and fluoride toothpaste.",
+        "Do not use herbal powders or strong substances as substitutes for standard dental care."
+      ],
+      "tags": [
+        "dantadhavana",
+        "oral_hygiene",
+        "morning"
+      ],
+      "source_references": [
+        "Charaka Samhita Online - Dinacharya",
+        "Contemporary dental hygiene guidance"
+      ]
+    }
+  ]
+}

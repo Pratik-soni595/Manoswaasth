@@ -9,6 +9,7 @@ const authRoutes = require('./routes/auth.routes');
 const quizRoutes = require('./routes/quiz.routes');
 const dashboardRoutes = require('./routes/dashboard.routes');
 const aiRoutes = require('./routes/ai.routes');
+const dincharyaRoutes = require('./routes/dincharya.routes');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/quiz', quizRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/ai', aiRoutes);
+app.use('/api/dincharya', dincharyaRoutes);
 
 // 404 Handler
 app.use((req, res, next) => {

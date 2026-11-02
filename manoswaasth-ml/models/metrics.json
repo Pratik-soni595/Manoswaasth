@@ -1,0 +1,224 @@
+{
+  "evaluation_notes": "Metrics evaluate agreement with the synthetic heuristic label-generator. High scores reflect model fidelity to the rule-based suitability scoring engine, not real-world effectiveness or clinical efficacy.",
+  "train_set_size": 800,
+  "test_set_size": 200,
+  "categories": {
+    "work_break": {
+      "model_metrics": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0
+      },
+      "baseline_metrics": {
+        "strategy": "most_frequent",
+        "accuracy": 0.525,
+        "macro_f1": 0.2295,
+        "weighted_f1": 0.3615
+      },
+      "class_counts_train": {
+        "BR05": 333,
+        "BR01": 434,
+        "BR08": 33
+      },
+      "class_counts_test": {
+        "BR05": 87,
+        "BR08": 8,
+        "BR01": 105
+      },
+      "classes": [
+        "BR01",
+        "BR05",
+        "BR08"
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "BR01",
+          "BR05",
+          "BR08"
+        ],
+        "matrix": [
+          [
+            105,
+            0,
+            0
+          ],
+          [
+            0,
+            87,
+            0
+          ],
+          [
+            0,
+            0,
+            8
+          ]
+        ]
+      },
+      "num_classes_in_train": 3,
+      "num_classes_in_test": 3
+    },
+    "after_work": {
+      "model_metrics": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0
+      },
+      "baseline_metrics": {
+        "strategy": "most_frequent",
+        "accuracy": 0.285,
+        "macro_f1": 0.1109,
+        "weighted_f1": 0.1264
+      },
+      "class_counts_train": {
+        "HM03": 229,
+        "HM04": 229,
+        "HM09": 228,
+        "HM01": 114
+      },
+      "class_counts_test": {
+        "HM04": 57,
+        "HM03": 57,
+        "HM01": 29,
+        "HM09": 57
+      },
+      "classes": [
+        "HM01",
+        "HM03",
+        "HM04",
+        "HM09"
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "HM01",
+          "HM03",
+          "HM04",
+          "HM09"
+        ],
+        "matrix": [
+          [
+            29,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            57,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            57,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            57
+          ]
+        ]
+      },
+      "num_classes_in_train": 4,
+      "num_classes_in_test": 4
+    },
+    "before_bed": {
+      "model_metrics": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0
+      },
+      "baseline_metrics": {
+        "strategy": "most_frequent",
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0
+      },
+      "class_counts_train": {
+        "SL02": 800
+      },
+      "class_counts_test": {
+        "SL02": 200
+      },
+      "classes": [
+        "SL02"
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "SL02"
+        ],
+        "matrix": [
+          [
+            200
+          ]
+        ]
+      },
+      "num_classes_in_train": 1,
+      "num_classes_in_test": 1
+    },
+    "after_waking": {
+      "model_metrics": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0
+      },
+      "baseline_metrics": {
+        "strategy": "most_frequent",
+        "accuracy": 0.57,
+        "macro_f1": 0.242,
+        "weighted_f1": 0.4139
+      },
+      "class_counts_train": {
+        "WK04": 457,
+        "WK05": 229,
+        "WK03": 114
+      },
+      "class_counts_test": {
+        "WK04": 114,
+        "WK03": 29,
+        "WK05": 57
+      },
+      "classes": [
+        "WK03",
+        "WK04",
+        "WK05"
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "WK03",
+          "WK04",
+          "WK05"
+        ],
+        "matrix": [
+          [
+            29,
+            0,
+            0
+          ],
+          [
+            0,
+            114,
+            0
+          ],
+          [
+            0,
+            0,
+            57
+          ]
+        ]
+      },
+      "num_classes_in_train": 3,
+      "num_classes_in_test": 3
+    }
+  },
+  "meta": {
+    "data_path": "D:\\manoswaasth\\manoswaasth\\manoswaasth-ml\\data\\dincharya_synthetic_dataset.csv",
+    "seed": 42,
+    "test_size": 0.2,
+    "is_stratified": true,
+    "python_version": "3.13.5",
+    "sklearn_version": "1.9.1"
+  }
+}

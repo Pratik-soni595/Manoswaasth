@@ -238,9 +238,14 @@ export default function Dashboard() {
                   </div>
                 )}
                 
-                <Link to="/routine-builder" className="widget__link" style={{ marginTop: '20px', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  Edit Routine <ArrowRight size={14} />
-                </Link>
+                <div style={{ marginTop: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
+                  <Link to="/routine-builder?tab=recommendations" className="widget__link" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <Sparkles size={14} /> AI Recommendations
+                  </Link>
+                  <Link to="/routine-builder?tab=manual" className="widget__link" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    Edit Routine <ArrowRight size={14} />
+                  </Link>
+                </div>
               </>
             ) : (
               <div className="routine-empty-state">
@@ -248,16 +253,28 @@ export default function Dashboard() {
                 <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.5', marginBottom: '20px' }}>
                   A consistent morning and evening routine helps regulate energy, improve focus, and support deeper rest. Start with a few simple rituals and build gradually.
                 </p>
-                <Link to="/routine-builder" style={{ textDecoration: 'none' }}>
-                  <motion.button
-                    className="btn btn--primary btn--sm widget__save-btn"
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    style={{ margin: 0 }}
-                  >
-                    Build My Routine
-                  </motion.button>
-                </Link>
+                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                  <Link to="/routine-builder?tab=recommendations" style={{ textDecoration: 'none' }}>
+                    <motion.button
+                      className="btn btn--primary btn--sm widget__save-btn"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      style={{ margin: 0, display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                    >
+                      <Sparkles size={14} /> Get Dincharya Plan
+                    </motion.button>
+                  </Link>
+                  <Link to="/routine-builder?tab=manual" style={{ textDecoration: 'none' }}>
+                    <motion.button
+                      className="btn btn--secondary btn--sm"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      style={{ margin: 0 }}
+                    >
+                      Custom Routine
+                    </motion.button>
+                  </Link>
+                </div>
               </div>
             )}
           </motion.div>

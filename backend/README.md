@@ -67,6 +67,27 @@ A minimal Node.js backend using Express, MongoDB, and Passport for authenticatio
 - `GET /api/dashboard/overview` (Auth required)
   - Retrieves a full profile overview with aggregated points, recent logs, and routines.
 
+### 5. Dincharya Recommendations (Phase 4)
+- `POST /api/dincharya/recommend` (Auth required)
+  - Generates four personalized Ayurvedic daily micro-rituals (work break, after work, before bed, after waking) adapted to the user's working routine.
+  - **Schedule Request Body:**
+    ```json
+    {
+      "break_start": "13:00",
+      "break_end": "13:15",
+      "return_home_time": "18:30",
+      "sleep_time": "23:00",
+      "wake_time": "06:30"
+    }
+    ```
+  - **Prakriti Retrieval:** The backend automatically reads the authenticated user's canonical Prakriti from MongoDB (`User.primaryDosha` or latest `QuizAttempt.dominantType`). Dosha or task IDs are not accepted from the client.
+  - **Python Service Dependency:** Proxies inference to the Python FastAPI microservice configured via `DINCHARYA_SERVICE_URL` (`http://127.0.0.1:8000`) with a configurable timeout `DINCHARYA_TIMEOUT_MS` (default 5000ms).
+  - **Error Handling:**
+    - `400 Bad Request` with `code: "DOSHA_ASSESSMENT_REQUIRED"` if user has not completed the Prakriti assessment.
+    - `400 Bad Request` if times are malformed or break end is earlier than/equal to start.
+    - `503 Service Unavailable` if the Python inference microservice is not running or times out.
+  - **Non-Clinical Disclaimer:** Recommendations are prototype wellness suggestions based on synthetic heuristic models; they do not constitute medical or clinical advice.
+
 ## Sample Requests
 
 ### Healthcheck
