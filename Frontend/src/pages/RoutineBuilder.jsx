@@ -13,7 +13,6 @@ import {
   Coffee,
   Home as HomeIcon,
   Sunrise,
-  AlertTriangle,
   AlertCircle,
   CheckCircle2,
   Compass,
@@ -493,20 +492,6 @@ export default function RoutineBuilder() {
                             </div>
                           </div>
                         )}
-
-                        {Array.isArray(task.safety_restrictions) &&
-                          task.safety_restrictions.length > 0 && (
-                            <div className="recommendation-card__safety">
-                              <div className="safety-header">
-                                <AlertTriangle size={14} /> Safety Caution
-                              </div>
-                              <ul className="safety-list">
-                                {task.safety_restrictions.map((restriction, idx) => (
-                                  <li key={idx}>{restriction}</li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
                       </div>
                     );
                   })}
